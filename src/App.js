@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import PatientForm from './components/PatientForm';
+import SqlQuery from './components/SqlQuery';
 import './App.css';
+import { FaMoon, FaSun } from 'react-icons/fa';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
+      <header className="app-header">
+        <h1 className="main-heading">Patient Registration App</h1>
+        <button className="toggle-btn" onClick={() => setDarkMode(prev => !prev)}>
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
       </header>
+      <main>
+        <PatientForm />
+        <hr />
+        <SqlQuery />
+      </main>
     </div>
   );
 }
